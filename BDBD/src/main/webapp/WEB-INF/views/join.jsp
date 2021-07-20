@@ -9,7 +9,7 @@
 <link
 	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
 	rel="stylesheet">
-<link href="resources/css/join.css" rel="stylesheet" type="text/css" />
+<link href = "resources/css/join.css" rel = "stylesheet" type = "text/css"/>
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="resources/js/js.js"></script>
@@ -200,9 +200,9 @@
 						placeholder="이름">
 				</div>
 			</div>
+				<input type="date" name="birthDay" class="box" />
 
-
-			<div id="mail">이메일</div>
+			
 			<div>
 				<input type="email" class="box" id="userMail" name="userMail"
 					placeholder="이메일">&nbsp;@ <select class="mailbox"
@@ -213,7 +213,7 @@
 					<option value="@daum.net">daum.net</option>
 				</select>
 			</div>
-			<div id="add">주소</div>
+			
 <input type="text" class="postbox" id="sample4_postcode" placeholder="우편번호">
 <input type="button" class="sbutton" onclick="sample4_execDaumPostcode()" value="검색"><br>
 <input type="text" class="box" id="sample4_roadAddress" placeholder="도로명주소">
@@ -223,7 +223,7 @@
 
 			<div>
 				<div id="signUp">
-					<a href="logIn" style="text-decoration: none; color: #5191ce;">로그인</a>
+					<a href="accessForm" style="text-decoration: none; color: #5191ce;">로그인</a>
 					<input type="button" class="button" name="userpass" value="가입하기" onClick="joinInfo()">
 				</div>
 			</div>
