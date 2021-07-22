@@ -15,98 +15,6 @@
 <script src="resources/js/join.js"></script>
 <script>
    //중복체크
-   function isDup(obj) {
-      const userId = document.getElementsByName("userId")[0];
-
-      if (obj.value != "재입력") {
-         if (charCount(userId.value, 6, 12)) {
-            if (!isValidateCheck(1, userId.value)) { //패턴에 합하지않는다면,
-               alert("아이디형식이 맞지않습니다.");
-               userId.value = "";
-               userId.focus();
-               return;
-            }
-
-            //ajax true면 사용가능
-            postAjax("isDup", "userId=" + userId.value, "afterDup");
-         } else {
-            alert("아이디의 길이는 8~12이내 입니다.");
-            userId.focus();
-         }
-
-      } else {
-         userId.value = "";
-         userId.readOnly = false;
-         userId.focus();
-      }
-
-   }
-
-   $(document).ready(function() {
-      $("#idBox").blur(function() {
-         var idBox = $('#idBox').val();
-         postAjax("idDup", "userId=" + idBox, "afterDup");
-      });
-   });
-
-   function afterDup(jsonData) {
-      let btn = document.getElementById("dupBtn")
-      let userId = document.getElementsByName("userId")[0];
-      let msg = document.getElementById("msg");
-      let dupId = document.getElementById("dupId");
-      let idBox = document.getElementById("idBox");
-
-      if (isValidateCheck(1, idBox)) {
-         idBox.style.border = "1px solid #FF4646";
-         dupId.innerText = "숫자와 영문 대소문자 6~12자리로 입력해주세요.";
-         dupId.style.color = "#FF4646";
-         idBox.value = "";
-         idBox.focus();
-         return;
-      }
-
-      //메세지가 turn일경우 사용가능
-      if (jsonData == true) {
-         btn.setAttribute("value", "재입력");
-         userId.setAttribute("readonly", true);
-         dupId.innerText = "사용가능한 아이디입니다.";
-         idBox.style.border = "1px solid #51FFA6";
-         dupId.style.color = "#51FFA6";
-
-      } else {
-         userId.value = ""
-         dupId.innerText = "중복된 아이디가 있습니다.";
-         idBox.style.border = "1px solid #FF4646";
-         dupId.style.color = "#FF4646";
-         userId.focus();
-      }
-   }
-
-   function pwdCh(obj) {
-      if (charCount(obj.value, 8, 20)) {
-         if (!isValidateCheck(2, obj.value)) {
-            alert("비밀번호는 8~20글자이내 숫자,대문자,소문자,특수문자의 3가지이상의 조합입니다.");
-            obj.value = "";
-            obj.focus();
-         }
-      } else {
-         alert("비밀번호는 8~20이내로 입력해주세요.");
-         obj.value = "";
-         obj.focus();
-      }
-   }
-
-   function pwdCh2(obj) {
-      const pwd1 = document.getElementsByName("userPass")[0];
-      const pwd2 = document.getElementsByName("userPass")[1];
-
-      if (pwd1.value != pwd2.value) {
-         alert("위의 패스워드와 일치하지 않습니다. 다시 확인해주세요");
-         pwd1.value = "";
-         pwd2.value = "";
-         pwd1.focus();
-      }
-   }
    
     function sample4_execDaumPostcode() {
         new daum.Postcode({
@@ -173,19 +81,17 @@
          <div id="id">아이디</div>
          <div>
             <input type="text" id="idBox" class="box" name="userId"
-               placeholder="*아이디를 입력해주세요." onkeyup="korCheck(this, event)">
+               placeholder="*아이디를 입력해주세요." onkeyup="korCheck(this, event)" onblur = "isDupCheck()"/>
             <div id="dupId"></div>
-            <input type="button" class="button" id="dupBtn" value="중복체크"
-               onClick="isDup(this)" />
          </div>
-         <div id="pass">비밀번호</div>
+         <div id="pass"></div>
          <div>
             <input type="password" id="passBox" class="box" name="userPass"
-               placeholder="비밀번호를 입력해주세요." onBlur="pwdCh(this)">
+               placeholder="비밀번호를 입력해주세요." onBlur="pwdCh(this)"/>
          </div>
          <div>
             <input type="password" id="passBox2" class="box" name="userPass"
-               placeholder="비밀번호를 다시 입력해주세요." onBlur="pwdCh2(this)">
+               placeholder="비밀번호를 다시 입력해주세요." onBlur="pwdCh2(this)"/>
          </div>
 
          <div id="Phone">전화번호</div>

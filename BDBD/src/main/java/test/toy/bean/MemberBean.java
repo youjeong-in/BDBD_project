@@ -22,5 +22,9 @@ public class MemberBean {
 	private String adress;
 	private String adress2;
 	private String adress3;
+	private String publicIp;
+	private String privateIp;
+	private String browser;
+	private int method;
 	
 }

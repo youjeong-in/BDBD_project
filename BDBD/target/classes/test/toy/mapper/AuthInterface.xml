@@ -13,5 +13,19 @@
     #{sex},#{userPhone},#{userMail},#{adress})
     </insert>
     
+    <select id="isDup" parameterType="test.toy.bean.MemberBean" resultType="int">
+    	SELECT COUNT(*) FROM TMB WHERE MB_ID= #{userId}
+    </select>
     
+      <select id="getPass" parameterType="test.toy.bean.AccessInfo" resultType="string">
+    	SELECT MB_PASS FROM TMB WHERE MB_ID= #{userId}
+    </select>
+    
+    <insert id="insLog" parameterType="test.toy.bean.AccessInfo">
+		INSERT INTO TL VALUES (#{userId}, #{method}, #{publicIp}, #{privateIp}, #{browser}, sysdate)
+	</insert>
+	
+	<select id="getUserInfo" parameterType="test.toy.bean.MemberBean" resultType="test.toy.bean.MemberBean">
+		SELECT MB_NAME AS USERNAME ,MB_PHONE AS USERPHONE, MB_MAIL AS USERMAIL,MB_ADRESS AS ADRESS FROM TMB WHERE MB_ID= #{userId}
+	</select>    
     </mapper>

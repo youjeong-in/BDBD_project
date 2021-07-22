@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import test.toy.auth.Authentication;
+import test.toy.bean.AccessInfo;
 import test.toy.bean.MemberBean;
 
 @Controller
@@ -44,6 +46,21 @@ public class HomeController {
 	   mav = auth.joinCtl(mb);
 	   
 	   return mav;
+   }
+   
+   @PostMapping("/logIn")
+   public ModelAndView logIn(@ModelAttribute MemberBean mb) {
+	   System.out.println(mb.getPublicIp());
+	   return auth.logInCtl(mb);
+   }
+   
+   
+   
+   @GetMapping("/isDup")
+   @ResponseBody
+   public boolean isDup(@ModelAttribute MemberBean mb) {
 	   
+	   
+	   return auth.isDupCtl(mb);
    }
 }

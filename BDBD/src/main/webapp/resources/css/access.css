@@ -33,7 +33,7 @@ body{
    border:1px solid #bbbbbb;
    background-color:#ffffff;
    border-radius:5px;
-   height:500px;
+   height:600px;
    width:400px;
    
 }
@@ -64,10 +64,10 @@ body{
    margin-top:-5px;
    position:absolute;
    z-index:1;
-   display:none;
+   
 }
 #passBox{
-   display:none;
+   
    position:relative;
    
 }
